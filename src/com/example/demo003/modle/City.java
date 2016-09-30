@@ -3,7 +3,7 @@ package com.example.demo003.modle;
 public class City {
 	private int id;
 	private String cityName;
-	private String citycode;
+	private String cityCode;
 	private int provinceId;
 
 	public int getId() {
@@ -23,11 +23,11 @@ public class City {
 	}
 
 	public String getCitycode() {
-		return citycode;
+		return cityCode;
 	}
 
 	public void setCitycode(String citycode) {
-		this.citycode = citycode;
+		this.cityCode = citycode;
 	}
 
 	public int getProvinceId() {

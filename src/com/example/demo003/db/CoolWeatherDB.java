@@ -84,7 +84,7 @@ public class CoolWeatherDB {
 
 	}
 
-	public void SaveCity(City city) {
+	public void saveCity(City city) {
 		if (city != null) {
 			ContentValues values = new ContentValues();
 			values.put(CITY_NAME, city.getCityName());
@@ -114,7 +114,7 @@ public class CoolWeatherDB {
 
 	}
 
-	public void SaveCounty(County county) {
+	public void saveCounty(County county) {
 		if (county != null) {
 			ContentValues values = new ContentValues();
 			values.put(COUNTY_NAME, county.getCountyName());
