@@ -16,7 +16,10 @@ import com.example.demo003.util.Utility;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.DownloadManager.Query;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +56,11 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/**
+		 * £ê £Ð£µ£¶£±´úÂë¡¡
+		 * 
+		 */
+		Shared();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		listView = (ListView) findViewById(R.id.list_view);
@@ -72,10 +80,29 @@ public class MainActivity extends Activity {
 				} else if (currenLevel == LEVEL_CITY) {
 					selectedCity = cityList.get(index);
 					queryCounties();
+				} else if (currenLevel == LEVEL_COUNTY) {
+					String countryCode = countyList.get(index).getCountyCode();
+					Intent intent = new Intent(MainActivity.this,
+							WeatherActivity.class);
+					intent.putExtra("county_code", countryCode);
+					startActivity(intent);
+					finish();
 				}
 			}
 		});
 		queryProvices();
+	}
+
+	private void Shared() {
+		// TODO Auto-generated method stub
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		if (prefs.getBoolean("city_selected", false)) {
+			Intent intent = new Intent(this, WeatherActivity.class);
+			startActivity(intent);
+			finish();
+			return;
+		}
 	}
 
 	private void queryProvices() {
