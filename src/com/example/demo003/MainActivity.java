@@ -53,12 +53,19 @@ public class MainActivity extends Activity {
 	private City selectedCity;
 	private int currenLevel;
 
+	private boolean isFromWeatherActivity;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/**
+		 * P521
+		 */
+		isFromWeatherActivity = getIntent().getBooleanExtra(
+				"from_weather_activity", false);
+
+		/**
 		 * £ê £Ð£µ£¶£±´úÂë¡¡
-		 * 
 		 */
 		Shared();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -97,7 +104,7 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
-		if (prefs.getBoolean("city_selected", false)) {
+		if (prefs.getBoolean("city_selected", false) && isFromWeatherActivity) {
 			Intent intent = new Intent(this, WeatherActivity.class);
 			startActivity(intent);
 			finish();
@@ -248,6 +255,10 @@ public class MainActivity extends Activity {
 		} else if (currenLevel == LEVEL_CITY) {
 			queryProvices();
 		} else {
+			if (isFromWeatherActivity) {
+				Intent intent = new Intent(this, WeatherActivity.class);
+				startActivity(intent);
+			}
 			finish();
 		}
 	}
