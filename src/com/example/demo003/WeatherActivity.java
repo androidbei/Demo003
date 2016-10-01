@@ -36,6 +36,8 @@ public class WeatherActivity extends Activity implements OnClickListener {
 
 	private String address = "http" + ".xml";
 
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,8 +51,12 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		temp1Text = (TextView) findViewById(R.id.temp1);
 		temp2Text = (TextView) findViewById(R.id.temp2);
 		currentDateText = (TextView) findViewById(R.id.current_date);
+		
 		switchCtiy = (Button) findViewById(R.id.switch_city);
 		refreshWeather = (Button) findViewById(R.id.refresh_weather);
+		switchCtiy.setOnClickListener(this);
+		refreshWeather.setOnClickListener(this);
+		
 		String countyCode = getIntent().getStringExtra("county_code");
 		if (!TextUtils.isEmpty(countyCode)) {
 			publishText.setText("Í¬²½ÖÐ...");
